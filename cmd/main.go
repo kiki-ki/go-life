@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go-life/field"
+	"go-life/life"
 	"time"
 )
 
@@ -13,14 +13,13 @@ const (
 )
 
 func main() {
-	f := field.NewRandomField()
+	field := life.NewRandomField()
 	fmt.Print(clear)
 
 	for i := 0; i < span; i++ {
 		fmt.Print(head)
-		fmt.Print(f)
-		fmt.Printf("\nAge: %d\n", field.Age)
-		f = field.Next(f)
+		fmt.Print(field)
+		field.Next()
 		time.Sleep(100 * time.Millisecond)
 	}
 }
