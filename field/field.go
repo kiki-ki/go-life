@@ -7,7 +7,7 @@ import (
 
 const (
 	Width  = 200 + 2
-	Height = 60 + 2
+	Height = 50 + 2
 )
 
 var (

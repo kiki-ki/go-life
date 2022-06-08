@@ -19,6 +19,7 @@ func main() {
 	for i := 0; i < span; i++ {
 		fmt.Print(head)
 		fmt.Print(f)
+		fmt.Printf("\nAge: %d\n", field.Age)
 		f = field.Next(f)
 		time.Sleep(100 * time.Millisecond)
 	}
