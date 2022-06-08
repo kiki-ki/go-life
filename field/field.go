@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	Width  = 100
-	Height = 50
+	Width  = 300 + 2
+	Height = 100 + 2
 )
 
 var (
@@ -17,35 +17,43 @@ var (
 type FieldType [][]bool
 
 func NewField() FieldType {
-	field := make([][]bool, Height)
-	for i := range field {
-		field[i] = make([]bool, Width)
+	f := make([][]bool, Height)
+	for y := range f {
+		f[y] = make([]bool, Width)
 	}
-	return field
+	return f
 }
 
 func NewRandomField() FieldType {
-	field := NewField()
+	f := NewField()
 	rand.Seed(time.Now().Unix())
 
-	for i := range field {
-		for j := range field[i] {
+	for y := range f {
+		for x := range f[y] {
+			if isBufferCell(y, x) {
+				continue
+			}
+
 			var cell bool
 			if rand.Int()%2 == 1 {
 				cell = true
 			}
-			field[i][j] = cell
+			f[y][x] = cell
 		}
 	}
-	return field
+	return f
 }
 
-func (field FieldType) String() string {
+func (f FieldType) String() string {
 	fStr := ""
-	for _, r := range field {
+	for y := range f {
 		rStr := ""
-		for _, c := range r {
-			if c {
+		for x := range f[y] {
+			if isBufferCell(y, x) {
+				continue
+			}
+
+			if f[y][x] {
 				rStr += "*"
 			} else {
 				rStr += " "
@@ -54,4 +62,12 @@ func (field FieldType) String() string {
 		fStr += rStr + "\n"
 	}
 	return fStr
+}
+
+func isBufferCell(yIdx, xIdx int) bool {
+	if yIdx == 0 || xIdx == 0 || yIdx == Height-1 || xIdx == Width-1 {
+		return true
+	}
+
+	return false
 }

@@ -7,5 +7,9 @@ import (
 
 func main() {
 	f := field.NewRandomField()
-	fmt.Println(f)
+
+	for i := 0; i < 100; i++ {
+		fmt.Println(f)
+		f = field.Next(f)
+	}
 }
