@@ -14,16 +14,10 @@ func Next(f FieldType) FieldType {
 				f[y][x-1], f[y][x+1],
 				f[y+1][x-1], f[y+1][x], f[y+1][x+1],
 			}
-			aliveNhCnt := aliveNeighbourhoodCnt(nh)
+			cnt := aliveNeighbourhoodCnt(nh)
 
-			if f[y][x] {
-				if aliveNhCnt <= 1 || aliveNhCnt >= 4 {
-					nextF[y][x] = false
-				}
-			} else {
-				if aliveNhCnt == 3 {
-					nextF[y][x] = true
-				}
+			if f[y][x] && cnt == 2 || cnt == 3 {
+				nextF[y][x] = true
 			}
 		}
 	}

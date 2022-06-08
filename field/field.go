@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	Width  = 300 + 2
-	Height = 100 + 2
+	Width  = 200 + 2
+	Height = 60 + 2
 )
 
 var (
@@ -54,7 +54,7 @@ func (f FieldType) String() string {
 			}
 
 			if f[y][x] {
-				rStr += "*"
+				rStr += "○"
 			} else {
 				rStr += " "
 			}
